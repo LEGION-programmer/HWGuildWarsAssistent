@@ -1,10 +1,10 @@
 <template>
     <div class="content">
         <button @click="logout" class="logout">Logout</button>
-        <AddWar />
+        <AddWar class="addWar"/>
         <GuildList class="menu"/>
         <div class="guild">
-            <WarTemplate :items="warStore.filterWars"/>
+            <WarTemplate :items="warStore.filterWars" />
         </div>
     </div>
 </template>
@@ -17,7 +17,7 @@ import WarTemplate from '../components/WarTemplate.vue'
 import AddWar from '../components/AddWar.vue'
 
 export default{
-    name: 'BurgSchreckenfels',
+    name: 'MainPage',
     components: {
         GuildList,
         WarTemplate,
@@ -49,25 +49,39 @@ export default{
         },    
 }
     
-    
-
 </script>
 <style>
 .content{
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-areas: 
+    "addWar . logout"
+    "guildList guildList wars"
+    ;
 }
 
 .logout{
+    width: 15%;
     height: 50px;
+    grid-area: logout;
+    justify-self: end;
+}
+
+.addWar{
+    grid-area: addWar;
+}
+
+.menu{
+    grid-area: guildList;
 }
 
 .guild{
     background-color: #F5B700;
     color: #DC0073;
-    width: 80%;
+    width: 100%;
     border-radius: 50px;
     text-align: center;
+    grid-area: wars;
+    justify-self: end;
 }
 
 .info{

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
-    <ul v-for="(item, index) in list" :key="index">
-      <li>{{ item }}</li>
+    <ul>
+      <li v-for="(item, index) in list" :key="index">{{ item }}</li>
     </ul>
   </div>
 </template>
@@ -10,7 +10,7 @@
 import { useWarStore } from '@/stores/warStore';
 
 export default {
-  name: 'GuildHeader',
+  name: 'GuildList',
   setup(){
     const warStore = useWarStore()
     const list = []

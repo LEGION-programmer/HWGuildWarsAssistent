@@ -12,6 +12,20 @@ class WarsController{
         }    
     }
 
+    async getOneWar(req, res){
+        try{
+            const obiekt = await GuildWars.findById(req.params.id);
+
+            if (!obiekt) {
+              return res.status(404).json({ message: 'Nie znaleziono obiektu o podanym ID' });
+            }
+        
+            return res.status(200).json(obiekt);
+        }catch(err){
+            return res.status(500).json({message: err.message})
+        }
+    }
+
     async addNewWar(req, res){
         try{
             const newWar = new GuildWars({
@@ -52,12 +66,14 @@ class WarsController{
             const newWar = new GuildWars({
                 guildOwner: req.body.guildOwner,
                 nameGuild: req.body.nameGuild, 
-                position: req.body.position,  
+                position: req.body.position, 
                 ourNick: req.body.ourNick, 
                 ourPower: req.body.ourPower,
                 score: req.body.score, 
                 enemyNick: req.body.enemyNick, 
                 enemyPower: req.body.enemyPower, 
+                ourHero: req.body.ourHero,
+                enemyHero: req.body.enemyHero
             })
             await newWar.save()
             return res.status(200).json({message: 'Zaktualizowano'})

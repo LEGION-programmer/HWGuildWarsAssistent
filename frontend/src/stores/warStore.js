@@ -4,7 +4,9 @@ import { defineStore } from 'pinia'
 export const useWarStore = defineStore('warStore', {
     state: () => ({
         wars: [],
-        filterWars: []
+        filterWars: [],
+        idToEdit: '',
+        dataToEdit: []
     }),
 
     actions: {
@@ -22,23 +24,6 @@ export const useWarStore = defineStore('warStore', {
             this.wars = newWar
         },
 
-        editWar(id, war){       
-            const newValues = {
-                _id: war._id,
-                nameGuild: war.nameGuild,
-                position: war.position,
-                ourHero: war.ourHero,
-                ourNick: war.ourNick,
-                ourPower: war.ourPower,
-                score: war.score,
-                enemyNick: war.enemyNick,
-                enemyPower: war.enemyPower,
-                enemyHero: war.enemyHero,
-            }
-            localStorage.removeItem(id)
-            localStorage.setItem(id, JSON.stringify(newValues))
-     
-        }
+        
     },
-    
 })
