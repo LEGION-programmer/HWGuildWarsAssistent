@@ -1,5 +1,5 @@
 <template>
-    <div class="con" v-for="(item, _id) in items" :key="_id">
+    <div class="con" v-for="(item, _id) in items" :key="_id" @change="warStore.filterWars">
         <h1 class="nameGuild">{{ item.nameGuild }}</h1>
         <h2 class="position">{{ item.position }}</h2>
         <div class="options">
@@ -47,7 +47,7 @@ export default {
             router.push({name: 'editWar'})
         }
 
-        return { deleteWar, getDataToEdit }
+        return { deleteWar, getDataToEdit, warStore }
     }
 }
 </script>

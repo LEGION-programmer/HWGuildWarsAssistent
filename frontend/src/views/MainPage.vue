@@ -2,35 +2,62 @@
     <div class="content">
         <button @click="logout" class="logout">Logout</button>
         <AddWar class="addWar"/>
-        <GuildList class="menu"/>
+        <GuildList class="menu" @get-guild-name="updateGuildName"/>
+        <PositionList @get-position="updatePosition"/>
+        <SelectPlayer :textInInput="'Our player: '" @get-player="updateOurPlayer"/>
         <div class="guild">
-            <WarTemplate :items="warStore.filterWars" />
+            <WarTemplate :items="dataToRender" />
         </div>
     </div>
 </template>
 <script>
 import { useRouter } from 'vue-router'
 import { useWarStore } from '../stores/warStore'
+import { ref } from 'vue'
 import axios from 'axios'
 import GuildList from '@/components/GuildList.vue'
 import WarTemplate from '../components/WarTemplate.vue'
 import AddWar from '../components/AddWar.vue'
+import PositionList from '@/components/PositionList.vue'
+import SelectPlayer from './SelectPlayer.vue'
 
 export default{
     name: 'MainPage',
     components: {
         GuildList,
         WarTemplate,
-        AddWar
+        AddWar,
+        PositionList,
+        SelectPlayer
     },
-    setup(){
-        const warStore = useWarStore()
-        const router = useRouter()
-
-        return {warStore, router}
+    data(){
+        return {
+            warStore: useWarStore(),
+            router: useRouter(),
+            dataToRender: ref([])
+        }
     },
 
     methods: {
+        updateGuildName(filter){
+            this.dataToRender = []
+            this.warStore.clearFilters()
+            this.warStore.filterByGuildName(filter)
+            this.dataToRender = [...this.warStore.filterWars]
+        },
+
+        updatePosition(position){
+            this.warStore.filters.position = position
+            this.warStore.filterWarsByOtherProperties()
+            this.dataToRender = [...this.warStore.filterWars]
+        },
+
+        updateOurPlayer(player){
+            this.warStore.filters.ourNick = player
+            this.warStore.filterWarsByOtherProperties()
+            this.dataToRender = [...this.warStore.filterWars]
+        },
+
         logout(){
             localStorage.removeItem('user')
             this.router.push({ name: 'home'})
@@ -42,7 +69,10 @@ export default{
         async function(){
             try{
                 let res = await axios.get(`http://localhost:3000/wars`)
-                this.warStore.getAllWars(res.data)
+                
+                res.data[0].forEach(element => {
+                    this.warStore.wars.push(element)
+                });
             }catch(e){
                 console.log(e)
             }

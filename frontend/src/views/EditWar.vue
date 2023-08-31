@@ -111,7 +111,6 @@ export default {
             try{
                 let res = await axios.get(`http://localhost:3000/wars/${this.warStore.idToEdit}`)
                 this.warInfo = res.data
-                console.log(this.warInfo)
             }catch(e){
                 console.log(e)
             }

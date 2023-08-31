@@ -1,7 +1,13 @@
 <template>
   <div class="container">
+    <h1>Guild List</h1>
     <ul>
-      <li v-for="(item, index) in list" :key="index">{{ item }}</li>
+      <li v-for="(item, index) in warStore.getAllGuildOneTime" 
+      :key="index"
+      @click="$emit('getGuildName', item)"
+      >
+      {{ item }}
+    </li>
     </ul>
   </div>
 </template>
@@ -13,14 +19,9 @@ export default {
   name: 'GuildList',
   setup(){
     const warStore = useWarStore()
-    const list = []
-    warStore.wars[0].forEach(element => {
-      if(!list.includes(element.nameGuild)){
-        list.push(element.nameGuild)
-      }
-    })
-    return { list }
-  }
+    return { warStore }
+  },
+
 }
 </script>
 

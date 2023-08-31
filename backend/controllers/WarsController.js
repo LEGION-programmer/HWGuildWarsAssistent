@@ -3,9 +3,9 @@ const GuildWars = require('../db/models/guildWars')
 
 class WarsController{
     async getAllInformation(req, res){
-        let war
+        let war = []
         try{
-            war = await GuildWars.find({})
+            war.push(await GuildWars.find({}))
             return res.status(200).json(war)
         }catch(err){
             return res.status(500).json({message: err.message})

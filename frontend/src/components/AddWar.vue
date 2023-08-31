@@ -9,7 +9,18 @@
                 </li>
                 <li>
                     <label for="position">Position: </label>
-                    <input type="text" id="position" placeholder="Bridge" v-model="warInfo.position">
+                    <select name="selectPosition" id="selectPosition" v-model="warInfo.position" @change="$emit('getPosition', selectedValue)">
+                        <option value="Barracks">Barracks</option>
+                        <option value="Mage Academy">Mage Academy</option>
+                        <option value="Lantern">Lantern</option>
+                        <option value="Bridge">Bridge</option>
+                        <option value="Spring of elements">Spring of elements</option>
+                        <option value="Ice Bastion">Ice Bastion</option>
+                        <option value="Fire Bastion">Fire Bastion</option>
+                        <option value="Gate of Nature">Gate of Nature</option>
+                        <option value="Foundry">Foundry</option>
+                        <option value="Citadel">Citadel</option>
+                    </select>
                 </li>
                 <li>
                     <label for="ourNick">Our nick: </label>
