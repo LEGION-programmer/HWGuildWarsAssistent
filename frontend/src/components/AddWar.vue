@@ -108,7 +108,7 @@ export default {
 
         const sendDatas = async() =>{
             try{
-                await axios.post('http://localhost:3000/wars', warInfo)
+                await axios.post('https://hw-wars-assistant.onrender.com/wars', warInfo)
                 warStore.addWar(warInfo)
                 window.location.reload()
             }catch(err){

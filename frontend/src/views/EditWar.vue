@@ -99,7 +99,7 @@ export default {
 
         editData(){
             try{
-                axios.put(`http://localhost:3000/wars/${this.warInfo._id}`, this.warInfo)
+                axios.put(`https://hw-wars-assistant.onrender.com/wars/${this.warInfo._id}`, this.warInfo)
                 .then(()=>{this.router.push({name: 'mainPage'})})
             }catch(err){
                 console.log(err)
@@ -109,7 +109,7 @@ export default {
     created: 
         async function(){
             try{
-                let res = await axios.get(`http://localhost:3000/wars/${this.warStore.idToEdit}`)
+                let res = await axios.get(`https://hw-wars-assistant.onrender.com/${this.warStore.idToEdit}`)
                 this.warInfo = res.data
             }catch(e){
                 console.log(e)

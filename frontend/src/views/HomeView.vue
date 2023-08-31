@@ -75,7 +75,7 @@ export default {
   methods: {
     async register(){
       try{
-        const res = await axios.post('http://localhost:3000/register', this.registerData)
+        const res = await axios.post('https://hw-wars-assistant.onrender.com/register', this.registerData)
         this.error = res.data.message
             if(res.data.validationStatus == true){    
                 window.localStorage.setItem('userid', res.data.guildId)
@@ -88,7 +88,7 @@ export default {
     },
     async login(){
       try{
-        const res = await axios.post('http://localhost:3000/login', this.loginData)
+        const res = await axios.post('https://hw-wars-assistant.onrender.com/login', this.loginData)
         this.error = res.data.message
             if(res.data.validationStatus == true){    
                 window.localStorage.setItem('userid', res.data.guildId)  

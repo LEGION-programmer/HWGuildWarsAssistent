@@ -68,7 +68,7 @@ export default{
         // get all information about wars
         async function(){
             try{
-                let res = await axios.get(`http://localhost:3000/wars`)
+                let res = await axios.get(`https://hw-wars-assistant.onrender.com/wars`)
                 
                 res.data[0].forEach(element => {
                     this.warStore.wars.push(element)

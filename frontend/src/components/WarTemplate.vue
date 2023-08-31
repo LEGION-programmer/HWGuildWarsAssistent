@@ -34,7 +34,7 @@ export default {
 
         const deleteWar = async(id) => {
             try{
-                await axios.delete(`http://localhost:3000/wars/${id}`)
+                await axios.delete(`https://hw-wars-assistant.onrender.com/wars/${id}`)
                 warStore.deleteWar(id)
                 window.location.reload()
             }catch(err){
