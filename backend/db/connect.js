@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
-
+require('dotenv').config()
 // get connection with db
-const url = 'mongodb://127.0.0.1:27017/HWGuildWars'
+const url = process.env.DB_CONNECT
 
 // db configuration
 mongoose.set('strictQuery', false)
