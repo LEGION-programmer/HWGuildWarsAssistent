@@ -3,8 +3,8 @@
         <h1 class="nameGuild">{{ item.nameGuild }}</h1>
         <h2 class="position">{{ item.position }}</h2>
         <div class="options">
-            <img src="../assets/edit.png" alt="edit" @click="getDataToEdit(item._id)">
-            <img src="../assets/trash.png" alt="trash" @click="deleteWar(item._id)">
+            <h6 @click="getDataToEdit(item._id)">Edit War</h6>
+            <h6 @click="deleteWar(item._id)">Delete War</h6>
         </div>
         <div class="ourPlayer">
             <h3 class="ourNick">{{ item.ourNick }}</h3>
@@ -57,9 +57,13 @@ export default {
     grid-template-areas:
     "nameGuild position options"
     "ourPlayer score enemyPlayer";
-    margin: 15px;
-    border: 1px solid #00A1E4;
+    margin: 20px;
+    background-color: #050041;
+    color: #9D79BC;
     border-radius: 50px;
+    padding: 10px;
+    box-shadow: 0 0 50px #e6e6e6;
+    justify-items: center;
 }
 
 .nameGuild{
@@ -72,12 +76,11 @@ export default {
 
 .options{
     grid-area: options;
+    font-size: 18px;
 }
 
-.options>img{
-    width: 25px;
-    height: 25px;
-    margin: 10px;
+.options>h6:hover{
+    cursor: pointer;
 }
 
 .ourPlayer{

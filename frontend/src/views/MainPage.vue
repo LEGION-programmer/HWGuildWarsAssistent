@@ -1,13 +1,18 @@
 <template>
     <div class="content">
-        <button @click="logout" class="logout">Logout</button>
-        <AddWar class="addWar"/>
-        <GuildList class="menu" @get-guild-name="updateGuildName"/>
-        <PositionList @get-position="updatePosition"/>
-        <SelectPlayer :textInInput="'Our player: '" @get-player="updateOurPlayer"/>
+        <div class="options">
+            <h1 @click="logout" class="logout">Logout</h1>
+            <AddWar class="addWar"/>
+            <div class="filters">
+                <PositionList @get-position="updatePosition"/>
+                <SelectPlayer @get-player="updateOurPlayer"/>
+            </div>
+            <GuildList class="guildList" @get-guild-name="updateGuildName"/>
+        </div>
         <div class="guild">
             <WarTemplate :items="dataToRender" />
         </div>
+        <FooterComponent class="footer"/>
     </div>
 </template>
 <script>
@@ -19,7 +24,8 @@ import GuildList from '@/components/GuildList.vue'
 import WarTemplate from '../components/WarTemplate.vue'
 import AddWar from '../components/AddWar.vue'
 import PositionList from '@/components/PositionList.vue'
-import SelectPlayer from './SelectPlayer.vue'
+import SelectPlayer from '@/components/SelectPlayer.vue'
+import FooterComponent from '@/components/FooterComponent.vue'
 
 export default{
     name: 'MainPage',
@@ -28,7 +34,8 @@ export default{
         WarTemplate,
         AddWar,
         PositionList,
-        SelectPlayer
+        SelectPlayer,
+        FooterComponent
     },
     data(){
         return {
@@ -80,53 +87,92 @@ export default{
 }
     
 </script>
-<style>
+<style scoped>
 .content{
     display: grid;
     grid-template-areas: 
-    "addWar . logout"
-    "guildList guildList wars"
+    "options"
+    "guildTemplate"
+    "footer"
     ;
+    grid-template-rows: 475px 500px;
+}
+
+.options{
+    display: grid;
+    grid-area: options;
+    grid-template-columns: 90px 500px 200px 200px;
+    grid-template-areas: 
+    "logout addWar filters guildList"
+    ;
+    align-items: start;
+    justify-items: center;
+    margin: 10px;
 }
 
 .logout{
-    width: 15%;
-    height: 50px;
+    width: 90px;
+    height: 20px;
     grid-area: logout;
-    justify-self: end;
+}
+
+.logout{
+    background-color: #0A0079;
+    color: #ff0202;
+    font-size: 15px;
+    padding: 3px;
+    border-radius: 30px;
+    border: 2px solid #A14DA0;
+    transition: all 0.4s;
+    text-align: center;
+}
+
+.logout:hover{
+    cursor: pointer;
+    box-shadow: 0 0 30px #ff0202;
 }
 
 .addWar{
     grid-area: addWar;
+    justify-self: start;
+    margin-left: 30px;
 }
 
-.menu{
+.filters{
+    grid-area: filters;
+    justify-self: center;
+    background-color: #050041;
+    color: #9D79BC;
+    box-shadow: 0 0 50px #e6e6e6;
+    border-radius: 30px;
+    padding: 7px;
+    margin-left: 110px;
+}
+
+.guildList{
     grid-area: guildList;
+    justify-self: stretch;
 }
 
 .guild{
-    background-color: #F5B700;
-    color: #DC0073;
-    width: 100%;
-    border-radius: 50px;
-    text-align: center;
-    grid-area: wars;
-    justify-self: end;
+    grid-area: guildTemplate;
 }
 
-.info{
-    background-color: #89FC00;
-    display: grid;
-    grid-template-columns: 20% 20% 20% 20% 20%;
-    grid-template-areas: 
-    "myHero myNick score enemyNick enemyHero"
-    ". myPower . enemyPower ."
-    ;
-    border: 2px solid #00A1E4;
-    border-radius: 50px;
-    margin: 10px;
-    padding: 5px;
-    justify-items: center;
-    align-items: center;
+.footer{
+    grid-area: footer;
+    margin-top: 50px;
+    clear: both;
+}
+
+@media screen and (max-width: 1000px){
+    .options{
+        grid-template-areas: 
+        "logout"
+        "addWar"
+        "filters"
+        "guildList"
+        ;
+        justify-items: stretch;
+    }
 }
 </style>

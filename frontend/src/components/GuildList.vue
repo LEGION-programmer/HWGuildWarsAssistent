@@ -1,25 +1,29 @@
 <template>
   <div class="container">
-    <h1>Guild List</h1>
-    <ul>
-      <li v-for="(item, index) in warStore.getAllGuildOneTime" 
-      :key="index"
-      @click="$emit('getGuildName', item)"
-      >
-      {{ item }}
-    </li>
-    </ul>
+    <h1 @click="showHide = !showHide">Guild List</h1>
+    <div class="guilds" v-show="showHide">
+      <ul>
+        <li v-for="(item, index) in warStore.getAllGuildOneTime" 
+        :key="index"
+        @click="$emit('getGuildName', item)"
+        >
+        {{ item }}
+      </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
-import { useWarStore } from '@/stores/warStore';
+import { useWarStore } from '@/stores/warStore'
+import { ref } from 'vue'
 
 export default {
   name: 'GuildList',
   setup(){
     const warStore = useWarStore()
-    return { warStore }
+    let showHide = ref(false)
+    return { warStore, showHide }
   },
 
 }
@@ -27,29 +31,45 @@ export default {
 
 <style scoped>
 .container{
-  background-color: #F5B700;
-  display: grid;
-  width: 15%;
-  border-radius: 50px;
-  justify-items: center;
-  align-content: start;
-  margin: 20px;
-  padding: 5px;
+  position: absolute;
+  right: 30px;
+  background-color: #050041;
+  color: #9D79BC;
+  width: 200px;
   height: auto;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 0 0 50px #e6e6e6;
 }
 
-.container>span{
-  width: 100px;
-  height: 50px;
-  background-color: #89FC00;
-  color: #DC0073;
+.guilds{
+  width: 95%;
+  height: 300px;
+  overflow-y: scroll;
+}
+
+.guilds::-webkit-scrollbar{
+  background-color: #050041;
+  border: 2px solid #A14DA0;
+  border-radius: 10px;
+}
+
+.guilds::-webkit-scrollbar-thumb{
+  background-color: #9D79BC;
+}
+
+h1{
   font-size: 18px;
-  font-weight: bold;
-  text-align: center;
-  margin: 5px;
-  padding: 5px;
-  border: 2px solid #00A1E4;
-  border-radius: 50px;
-  cursor: pointer;
+}
+
+ul{
+  list-style: none;
+
+}
+
+@media screen and (max-width: 1000px){
+  .container{
+    position: relative;
+  }
 }
 </style>

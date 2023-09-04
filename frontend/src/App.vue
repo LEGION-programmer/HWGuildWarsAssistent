@@ -5,9 +5,17 @@
   </nav>
   <router-view/>
 </template>
-
 <style>
+@font-face {
+  font-family: ethnocentric; 
+  src: url(ethnocentric.otf); 
+}
+
+*{
+  font-family: ethnocentric;
+}
+
 body{
-  background-color: #04E762;
+  background-color: #050041;
 }
 </style>

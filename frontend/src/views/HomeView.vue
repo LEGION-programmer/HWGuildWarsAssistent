@@ -46,15 +46,20 @@
       </form>
       <p>{{ error }}</p>
     </div>
+    <FooterComponent />
   </div>
 </template>
 
 <script>
 import { useRouter } from 'vue-router'
 import axios from 'axios'
+import FooterComponent from '@/components/FooterComponent.vue'
 
 export default {
   name: 'HomeView',
+  components: {
+    FooterComponent
+  },
   data(){
     return {
       loginData: {
@@ -110,39 +115,149 @@ export default {
 </script>
 
 <style scoped>
-*{
-  font-family: sans-serif;
-}
-
 .home{
   display: grid;
   height: 800px;
   justify-items: center;
   align-items: center;
-  justify-content: center;
-  align-content: center;
+  justify-items: center;
+  align-items: center;
   text-align: center;
 }
 
 .login{
   width: 500px;
   height: 350px;
-  background-color: #F5B700;
-  border: 2px solid #00A1E4;
+  background-color: #050041;
+  color: #9D79BC;
   border-radius: 50px;
   margin: 50px;
   padding: 20px;
+  box-shadow: 0 0 50px #e6e6e6
 }
 
 .register{
   width: 500px;
   height: 350px;
-  background-color: #F5B700;
-  border: 2px solid #00A1E4;
+  background-color: #050041;
+  color: #9D79BC;
   border-radius: 50px;
+  box-shadow: 0 0 50px #e6e6e6
 }
 
 ul{
   list-style: none;
+}
+
+label{
+    font-size: 12px;
+}
+
+input{
+    background-color: #0A0079;
+    margin: 5px;
+    border: 2px solid #A14DA0;
+    border-radius: 30px;
+    color: #8CA0D7;
+    width: 50%;
+}
+
+button{
+    display: inline-block;
+    position: relative;
+    font-size: 15px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.5s;
+    font-size: 15px;
+    text-align: center;
+    width: 30%;
+    height: 40px;
+    background-color: #0A0079;
+    border: 2px solid #A14DA0;
+    border-radius: 30px;
+    color: #8CA0D7;
+}
+
+button:hover{
+    cursor: pointer;
+    box-shadow: 0 0 30px #e6e6e6;
+    border: 2px solid #9D79BC;
+}
+
+button::after{
+    content: "<<";
+    position: absolute;
+    left: 140px;
+    opacity: 1;
+}
+
+button:hover::after{
+    animation: animateAfterHover 0.3s forwards;
+}
+
+button:not(hover)::after{
+    animation: animateAfterNotHover 0.3s forwards;
+}
+
+button::before{ 
+    content: ">>";
+    position: absolute;
+    left: 15px;
+    opacity: 0;
+}
+
+button:hover::before{
+    animation: animateBeforeHover 0.3s forwards;
+}
+
+button:not(hover)::before{
+    animation: animateBeforeNotHover 0.3s forwards;
+}
+
+@keyframes animateAfterHover{
+    from{
+        left: 180px;
+        opacity: 0;
+    }
+    to{
+        left: 115px;
+        opacity: 1;
+    }
+}
+
+@keyframes animateAfterNotHover{
+    from{
+        left: 115px;
+        opacity: 0;
+    }
+    to{
+        left: 180px;
+        opacity: 1;
+    }
+}
+
+@keyframes animateBeforeHover{
+    from{
+        left: -15px;
+        opacity: 0;
+    }
+    to{
+        left: 10px;
+        opacity: 1;
+    }
+}
+
+@keyframes animateBeforeNotHover{
+    from{
+        left: 10px;
+        opacity: 1;
+    }
+    to{
+        left: -15px;
+        opacity: 0;
+    }
 }
 </style>

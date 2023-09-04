@@ -8,7 +8,18 @@
                 </li>
                 <li>
                     <label for="position">Position: </label>
-                    <input type="text" id="position" v-model="warInfo.position">
+                    <select name="selectPosition" id="selectPosition" v-model="warInfo.position" @change="$emit('getPosition', selectedValue)">
+                        <option value="Barracks">Barracks</option>
+                        <option value="Mage Academy">Mage Academy</option>
+                        <option value="Lantern">Lantern</option>
+                        <option value="Bridge">Bridge</option>
+                        <option value="Spring of elements">Spring of elements</option>
+                        <option value="Ice Bastion">Ice Bastion</option>
+                        <option value="Fire Bastion">Fire Bastion</option>
+                        <option value="Gate of Nature">Gate of Nature</option>
+                        <option value="Foundry">Foundry</option>
+                        <option value="Citadel">Citadel</option>
+                    </select>
                 </li>
                 <li>
                     <label for="ourNick">Our nick: </label>
@@ -119,16 +130,143 @@ export default {
 </script>
 <style scoped>
 .con{
-    background-color: #F5B700;
-    color: #DC0073;
-    width: 80%;
+    display: grid;
+    background-color: #050041;
+    color: #9D79BC;
+    width: 70%;
+    height: 500px;
     border-radius: 50px;
     text-align: center;
-    height: 450px;
+    box-shadow: 0 0 50px #e6e6e6;
+    justify-items: center;
+    align-items: center;
 }
 
 ul{
     list-style: none;
     text-align: left;
+}
+
+input{
+    background-color: #0A0079;
+    margin: 5px;
+    border: 2px solid #A14DA0;
+    border-radius: 30px;
+    color: #8CA0D7;
+    width: 50%;
+}
+
+select{
+    background-color: #0A0079;
+    border: 2px solid #A14DA0;
+    border-radius: 30px;
+    color: #8CA0D7;
+}
+
+input[type=file]::file-selector-button{
+    background-color: #050041;
+    border: 2px solid #A14DA0;
+    border-radius: 30px;
+    color: #8CA0D7;
+}
+
+button{
+    display: inline-block;
+    position: relative;
+    margin-left: 25%;
+    font-size: 15px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.5s;
+    font-size: 15px;
+    text-align: center;
+    width: 30%;
+    height: 40px;
+    background-color: #0A0079;
+    border: 2px solid #A14DA0;
+    border-radius: 30px;
+    color: #8CA0D7;
+}
+
+button:hover{
+    cursor: pointer;
+    box-shadow: 0 0 30px #e6e6e6;
+    border: 2px solid #9D79BC;
+}
+
+button::after{
+    content: "<<";
+    position: absolute;
+    left: 140px;
+    opacity: 1;
+}
+
+button:hover::after{
+    animation: animateAfterHover 0.3s forwards;
+}
+
+button:not(hover)::after{
+    animation: animateAfterNotHover 0.3s forwards;
+}
+
+button::before{ 
+    content: ">>";
+    position: absolute;
+    left: 15px;
+    opacity: 0;
+}
+
+button:hover::before{
+    animation: animateBeforeHover 0.3s forwards;
+}
+
+button:not(hover)::before{
+    animation: animateBeforeNotHover 0.3s forwards;
+}
+
+@keyframes animateAfterHover{
+    from{
+        left: 180px;
+        opacity: 0;
+    }
+    to{
+        left: 120px;
+        opacity: 1;
+    }
+}
+
+@keyframes animateAfterNotHover{
+    from{
+        left: 120px;
+        opacity: 0;
+    }
+    to{
+        left: 180px;
+        opacity: 1;
+    }
+}
+
+@keyframes animateBeforeHover{
+    from{
+        left: -15px;
+        opacity: 0;
+    }
+    to{
+        left: 40px;
+        opacity: 1;
+    }
+}
+
+@keyframes animateBeforeNotHover{
+    from{
+        left: 40px;
+        opacity: 1;
+    }
+    to{
+        left: -15px;
+        opacity: 0;
+    }
 }
 </style>

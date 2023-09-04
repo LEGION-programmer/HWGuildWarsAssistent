@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="selectPosition">
         <label for="selectPosition">Select Position</label>
         <select name="selectPosition" id="selectPosition" v-model="selectedValue" @change="$emit('getPosition', selectedValue)">
             <option value="Barracks">Barracks</option>
@@ -26,5 +26,30 @@ export default {
 }
 </script>
 <style scoped>
-    
+.selectPosition{
+    display: grid;
+    justify-content: center;
+}
+
+label{
+    text-align: center;
+    font-size: 15px;
+    color: #9D79BC;
+}
+
+input{
+    background-color: #0A0079;
+    margin: 5px;
+    border: 2px solid #A14DA0;
+    border-radius: 30px;
+    color: #8CA0D7;
+    width: 50%;
+}
+
+select{
+    background-color: #0A0079;
+    border: 2px solid #A14DA0;
+    border-radius: 30px;
+    color: #8CA0D7;
+}
 </style>
