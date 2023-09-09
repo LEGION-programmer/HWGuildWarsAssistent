@@ -12,7 +12,6 @@
         <div class="guild">
             <WarTemplate :items="dataToRender" />
         </div>
-        <FooterComponent class="footer"/>
     </div>
 </template>
 <script>
@@ -25,7 +24,6 @@ import WarTemplate from '../components/WarTemplate.vue'
 import AddWar from '../components/AddWar.vue'
 import PositionList from '@/components/PositionList.vue'
 import SelectPlayer from '@/components/SelectPlayer.vue'
-import FooterComponent from '@/components/FooterComponent.vue'
 
 export default{
     name: 'MainPage',
@@ -34,8 +32,7 @@ export default{
         WarTemplate,
         AddWar,
         PositionList,
-        SelectPlayer,
-        FooterComponent
+        SelectPlayer
     },
     data(){
         return {
@@ -156,12 +153,6 @@ export default{
 
 .guild{
     grid-area: guildTemplate;
-}
-
-.footer{
-    grid-area: footer;
-    margin-top: 50px;
-    clear: both;
 }
 
 @media screen and (max-width: 1000px){

@@ -10,7 +10,6 @@ export default {
 </script>
 <style scoped>
 .footer{
-    position: static;
     display: grid;
     width: 90%;
     height: 50px;
@@ -19,9 +18,9 @@ export default {
     color: #9D79BC;
     box-shadow: 0 0 50px #e6e6e6;
     border-radius: 30px;
-    justify-items: center;
-    align-items: end;
     margin: 20px;
+    justify-self: center;
+    align-items: end;
 }
 
 h1{
