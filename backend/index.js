@@ -5,6 +5,9 @@ const routs = require('./api/routs')
 const port = process.env.PORT || 3000
 const app = express()
 
+// deafult cors
+app.use(cors());
+
 // parsers
 app.use(bodyParser.text())
 app.use(bodyParser.json())
@@ -12,9 +15,6 @@ app.use(bodyParser.json())
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static('public'));
-
-// deafult cors
-app.use(cors());
 
 require('./db/connect')
 
