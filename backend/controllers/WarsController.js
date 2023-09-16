@@ -30,12 +30,12 @@ class WarsController{
         try{
             const newWar = new GuildWars({
                 guildOwner: req.body.guildOwner,
-                nameGuild: req.body.nameGuild, 
+                nameGuild: req.body.nameGuild.toUpperCase(), 
                 position: req.body.position, 
-                ourNick: req.body.ourNick, 
+                ourNick: req.body.ourNick.toUpperCase(), 
                 ourPower: req.body.ourPower,
                 score: req.body.score, 
-                enemyNick: req.body.enemyNick, 
+                enemyNick: req.body.enemyNick.toUpperCase(), 
                 enemyPower: req.body.enemyPower, 
                 ourHero: req.body.ourHero,
                 enemyHero: req.body.enemyHero
@@ -65,12 +65,12 @@ class WarsController{
            
             const newWar = new GuildWars({
                 guildOwner: req.body.guildOwner,
-                nameGuild: req.body.nameGuild, 
+                nameGuild: req.body.nameGuild.toUpperCase(), 
                 position: req.body.position, 
-                ourNick: req.body.ourNick, 
+                ourNick: req.body.ourNick.toUpperCase(), 
                 ourPower: req.body.ourPower,
                 score: req.body.score, 
-                enemyNick: req.body.enemyNick, 
+                enemyNick: req.body.enemyNick.toUpperCase(), 
                 enemyPower: req.body.enemyPower, 
                 ourHero: req.body.ourHero,
                 enemyHero: req.body.enemyHero

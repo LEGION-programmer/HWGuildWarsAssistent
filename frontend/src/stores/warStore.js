@@ -49,7 +49,7 @@ export const useWarStore = defineStore('warStore', {
             }) 
             if(this.filters.ourNick !== '' || this.filters.enemyNick !== ''){
                 this.wars.forEach((el)=>{
-                    if(el.ourNick.indexOf(this.filters.ourNick) === 0 || el.enemyNick.indexOf(this.filters.ourNick) === 0 && el.guildName === this.filters.guildName){
+                    if(el.ourNick.indexOf(this.filters.ourNick.toUpperCase()) === 0 || el.enemyNick.indexOf(this.filters.ourNick.toUpperCase()) === 0 && el.guildName === this.filters.guildName){
                         secendSort.push(el)
                     }
                 })
